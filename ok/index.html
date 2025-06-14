@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Surpresa amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background: #ffe0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* PÁGINA 1 - Abertura */
+    #page1 {
+      position: absolute;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(135deg, #000000, #000000);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      user-select: none;
+      z-index: 10;
+    }
+
+    #page1 h1 {
+      font-size: 3.5rem;
+      margin-top: 1.5rem;
+      text-shadow: 0 0 10px #000000;
+      animation: pulseText 2s infinite;
+    }
+
+    #photoClick {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      animation: pulsePhoto 2s infinite;
+      transition: filter 0.5s ease;
+      border: 4px solid white;
+    }
+
+    #photoClick:hover {
+      filter: grayscale(0%);
+      box-shadow:
+        0 0 30px #000000,
+        0 0 60px #000000,
+        0 0 90px #000000;
+    }
+
+    @keyframes pulsePhoto {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow:
+          0 0 30px #000000,
+          0 0 60px #000000,
+          0 0 90px #000000;
+      }
+    }
+
+    @keyframes pulseText {
+      0%, 100% {
+        text-shadow: 0 0 10px #000000;
+      }
+      50% {
+        text-shadow: 0 0 25px #000000;
+      }
+    }
+
+    /* PÁGINA 2 - Surpresa */
+    #page2 {
+      display: none;
+      position: absolute;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(180deg, #ffffff, #000000);
+      color: #000000;
+      overflow: hidden;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      padding: 0 20px;
+      text-align: center;
+      z-index: 9;
+    }
+
+    #page2 h2 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 15px #000000;
+      animation: pulseText2 3s infinite;
+    }
+
+    #page2 p {
+      font-size: 1.5rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-shadow: 0 0 8px #ffffff;
+    }
+
+    @keyframes pulseText2 {
+      0%, 100% {
+        text-shadow: 0 0 15px #000000;
+      }
+      50% {
+        text-shadow: 0 0 30px #000000;
+      }
+    }
+
+    /* Botão Voltar */
+    #btnBack {
+      background: #000000;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+    }
+    #btnBack:hover {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    /* Corações caindo */
+    .heart-fall {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: #ff0033;
+      transform: rotate(-45deg);
+      border-radius: 4px;
+      opacity: 0.85;
+      box-shadow: 0 0 10px #ff0033;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .heart-fall::before,
+    .heart-fall::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .heart-fall::before {
+      top: -12.5px;
+      left: 0;
+    }
+    .heart-fall::after {
+      top: 0;
+      left: 12.5px;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(-45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Página 1 - Abertura -->
+  <div id="page1">
+    <img src="nossa_foto.jpg" alt="Foto em preto e branco" id="photoClick" />
+    <h1>Clique na foto ai bocó</h1>
+  </div>
+
+  <!-- Página 2 - Surpresa -->
+  <div id="page2">
+    <h2>Eu te amo ❤️</h2>
+    <p>
+      E amo cada pedacinho seu, mais do que qualquer estrela no céu,  
+      mais do que o brilho do Arrascaeta em campo.  
+      O brilho dos seus me encanta tanto quanto 
+      a taça  da libertadores em 2019.
+    </p>
+    <button id="btnBack">Voltar</button>
+  </div>
+
+  <script>
+    const photo = document.getElementById('photoClick');
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const btnBack = document.getElementById('btnBack');
+
+    let heartsInterval;
+
+    // Cria corações caindo na página 2
+    function spawnHearts() {
+      heartsInterval = setInterval(() => {
+        const heartF = document.createElement('div');
+        heartF.className = 'heart-fall';
+        heartF.style.left = Math.random() * window.innerWidth + 'px';
+        heartF.style.animationDuration = 4 + Math.random() * 3 + 's';
+        heartF.style.width = heartF.style.height = 15 + Math.random() * 20 + 'px';
+        document.body.appendChild(heartF);
+
+        setTimeout(() => {
+          heartF.remove();
+        }, 7000);
+      }, 300);
+    }
+
+    photo.addEventListener('click', () => {
+      page1.style.display = 'none';
+      page2.style.display = 'flex';
+      spawnHearts();
+    });
+
+    btnBack.addEventListener('click', () => {
+      page2.style.display = 'none';
+      page1.style.display = 'flex';
+      clearInterval(heartsInterval);
+      // Remove todos os corações restantes
+      document.querySelectorAll('.heart-fall').forEach(el => el.remove());
+    });
+  </script>
+
+</body>
+</html>
